@@ -1,3 +1,4 @@
+
 class Helper {
 	static baseURL() {
 		return 'https://api.foursquare.com/v2';
@@ -6,34 +7,36 @@ class Helper {
 		const keys = {
 			client_id: 'QPWAV1APHPWJOOVUFBJNZNA342EOHJUUO0JJCS4SCEDY5HM2',
 			client_secret: 'KWGGVDL1JJGCNBRBWKCEB0UEGX3ANO5PFLVPJFHWRVJOAO2B',
-			v: '20181031'
+			v: '20181102'
 		};
 		return Object.keys(keys).map(key => `${key}=${keys[key]}`).join('&');
 	}
-	static urlBuilder(urlPrams) {
-		if (!urlPrams) {
-			return 'error'
+	static urlBuilder(urlParams) {
+		if (!urlParams) {
+			return ''
 		}
-		return Object.keys(urlPrams).map(key => `${key}={urlPrams[key]}`).join('&');
+		return Object.keys(urlParams).map(key => `${key}={urlParams[key]}`).join('&');
 	}
 	static headers() {
 		return {
 			Accept: 'application/json'
 		};		
 	}
-	static simpleFetch(endPoint, method, urlPrams) {
-		let requestData={method, headers: Helper.headers()
+	static simpleFetch(endPoint, method, urlParams) {
+		let requestData={
+			method, 
+			headers: Helper.headers()
 		};
 		return fetch(
-			`${Helper.baseURL()}${endPoint}?${Helper.auth()}&${Helper.urlBuilder(urlPrams)}`,
+			`${Helper.baseURL()}${endPoint}?${Helper.auth()}&${Helper.urlBuilder(urlParams)}`,
 		requestData
-		).then( res => res.json());
+		).then(res => res.json());
 	}
 }
 
 export default class SquareAPI {
-	static search(urlPrams) {
-		return Helper.simpleFetch('/venues/search','GET', urlPrams);
+	static search(urlParams) {
+		return Helper.simpleFetch('/venues/search','GET', urlParams);
 	}
 	static getVenueDetails(VENUE_ID) {
 		return Helper.simpleFetch(`/venues/${VENUE_ID}`, 'GET');
