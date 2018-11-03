@@ -13,11 +13,29 @@ class App extends Component {
       zoom: 10
     };
   }
+  closeMarkers = () => {
+    const markers = this.state.markers.map(marker => {
+      marker.isOpen=false;
+      return marker;
+    });
+    this.setState({markers: Object.assign(this.state.markers, markers)})
+  };
+  markerClick = (marker) => {
+    this.closeMarkers();
+    marker.isOpen = true;
+    this.setState({markers: Object.assign(this.state.markers, marker)});
+    const venue = this.state.venues.find(venue => venue.id === marker.id);
+    SquareAPI.getVenueDetails(marker.id).then(result => {
+      const nextVenue = Object.assign(venue, result.response.venue);
+      this.setState({venues: Object.assign(this.state.venues, nextVenue)});
+      console.log(nextVenue)
+    });
+  };
   componentDidMount() {
     SquareAPI.search({
-      near: '80026',
-      query: 'food',
-      limit: 20
+      near: 'Lenox, MA',
+      query: 'yoga',
+      limit: 10
       })
       .then(res => {
         const{venues}=res.response;
@@ -27,7 +45,8 @@ class App extends Component {
             lat:ven.location.lat,
             lng:ven.location.lng,
             isOpen:false,
-            isVisible:true
+            isVisible:true,
+            id:ven.id
           };
         });
         this.setState({venues, center, markers});
@@ -37,7 +56,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Map {...this.state} />
+        <Map {...this.state} 
+        markerClick = {this.markerClick} />
       </div>
     );
   }
