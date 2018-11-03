@@ -15,7 +15,7 @@ class Helper {
 		if (!urlParams) {
 			return ''
 		}
-		return Object.keys(urlParams).map(key => `${key}={urlParams[key]}`).join('&');
+		return Object.keys(urlParams).map(key => `${key}=${urlParams[key]}`).join('&');
 	}
 	static headers() {
 		return {
