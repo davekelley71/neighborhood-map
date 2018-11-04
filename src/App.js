@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Map from './components/Map';
 import SquareAPI from './API/';
+import SearchBar from './components/SearchBar';
 
 class App extends Component {
   constructor() {
@@ -56,6 +57,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <SearchBar />
         <Map {...this.state} 
         markerClick = {this.markerClick} />
       </div>
