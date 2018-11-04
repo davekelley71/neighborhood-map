@@ -1,3 +1,16 @@
+Welcome to my Neighborhood App!
+
+To run this application you will need to clone the repository from 
+	https://github.com/davekelley71/neighborhood-map.git
+
+Once you have cloned the project make sure you cd into the project.
+
+Once you are in the project, type "yarn start" or "npm start" to launch the application.
+
+You can search venues by typing search items into the search window.
+
+Happy Hunting!!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

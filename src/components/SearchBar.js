@@ -9,6 +9,9 @@ export default class SearchBar extends Component {
 			venues: []
 		};
 	}
+
+	// Filter out places that do not match search criteria
+
 	filterVenues = () => {
 		if ( this.state.query.trim() !== '' ) {
 			const venues = this.props.venues.filter(venue => venue.name
@@ -20,6 +23,7 @@ export default class SearchBar extends Component {
 		return this.props.venues;
 	};
 
+	// Filter out markers that do not meet criteria
 	handleChange = event => {
 		this.setState({query: event.target.value});
 		
@@ -36,6 +40,7 @@ export default class SearchBar extends Component {
 		});
 		this.props.updateSuperState({ markers} );
 	};
+	
 	render() {
 		return (
 			<div className= 'searchBar'>
