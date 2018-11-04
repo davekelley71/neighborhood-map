@@ -27,6 +27,9 @@
   padding: 10px;
   margin-top: 8px;
   cursor: pointer;
+  background: #427BBCFF;
+  display: flex;
+  align-items: center;
 }
 
 .App-logo {

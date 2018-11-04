@@ -11,7 +11,10 @@ class App extends Component {
       venues: [],
       markers: [],
       center: [],
-      zoom: 10
+      zoom: 10,
+      updateSuperState: object => {
+        this.setState(object);
+      }
     };
   }
   closeMarkers = () => {
@@ -39,8 +42,8 @@ class App extends Component {
   };
   componentDidMount() {
     SquareAPI.search({
-      near: 'Lenox, MA',
-      query: 'tavern',
+      near: 'Lafayette, CO',
+      query: 'tacos',
       limit: 10
       })
       .then(res => {
