@@ -7,7 +7,7 @@ export default class VenueContent extends Component {
 			<ol className = 'venueContent'>
 				{ this.props.venues && 
 					this.props.venues.map((venue, idx) =>  
-						<Item key = {idx} {...venue} /> 
+						<Item key = {idx} {...venue} itemClick = {this.props.itemClick} /> 
 				)}
 			</ol>
 		);

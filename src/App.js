@@ -29,8 +29,13 @@ class App extends Component {
     SquareAPI.getVenueDetails(marker.id).then(result => {
       const nextVenue = Object.assign(venue, result.response.venue);
       this.setState({venues: Object.assign(this.state.venues, nextVenue)});
-      console.log(nextVenue)
+      console.log(nextVenue);
     });
+  };
+  itemClick = venue => {
+    const marker = this.state.markers.find(marker => marker.id === venue.id);
+    this.markerClick(marker);
+    console.log(marker);
   };
   componentDidMount() {
     SquareAPI.search({
@@ -57,7 +62,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SearchBar {...this.state} />
+        <SearchBar {...this.state} itemClick = {this.itemClick} />
         <Map {...this.state} 
         markerClick = {this.markerClick} />
       </div>

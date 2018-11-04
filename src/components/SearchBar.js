@@ -6,7 +6,7 @@ export default class SearchBar extends Component {
 		return (
 			<div className= 'searchBar'>
 				<input type = {'search'} id = {'search'} placeholder = {'Search a Location'} />
-				<VenueContent {...this.props} />
+				<VenueContent {...this.props} itemClick = { this.props.itemClick} />
 			</div>
 		);
 	}
