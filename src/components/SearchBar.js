@@ -5,14 +5,24 @@ export default class SearchBar extends Component {
 	constructor() {
 		super();
 		this.state = {
-			query: ''
-		}
+			query: '',
+			venues: []
+		};
 	}
 	filterVenues = () => {
-
+		if ( this.state.query.trim() !== '' ) {
+			const venues = this.props.venues.filter(venue => venue.name
+				.toLowerCase()
+				.includes(this.state.query.toLowerCase())
+			)
+			return venues;
+		}
+		return this.props.venues;
 	};
+
 	handleChange = event => {
 		this.setState({query: event.target.value});
+		
 		const markers = this.props.venues.map( venue => {
 			const matched = venue.name.toLowerCase().includes(event.target.value.toLowerCase());
 			const marker = this.props.markers.find(marker => marker.id === venue.id);
@@ -36,6 +46,7 @@ export default class SearchBar extends Component {
 					onChange = {this.handleChange} 
 				/>
 				<VenueContent {...this.props} 
+					venues = { this.filterVenues() }
 					itemClick = { this.props.itemClick} 
 				/>
 			</div>
