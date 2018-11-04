@@ -57,7 +57,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SearchBar />
+        <SearchBar {...this.state} />
         <Map {...this.state} 
         markerClick = {this.markerClick} />
       </div>
